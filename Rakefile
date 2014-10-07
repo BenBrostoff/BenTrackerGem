@@ -1,6 +1,7 @@
 require "bundler/gem_tasks"
 require 'bundler'
 require 'rspec/core/rake_task'
+require 'date'
 
 Bundler::GemHelper.install_tasks
 

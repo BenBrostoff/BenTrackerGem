@@ -5,7 +5,7 @@ require 'bentrackergem/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "bentrackergem"
-  spec.version       = Bentrackergem::VERSION
+  spec.version       = BenTrackerGem::VERSION
   spec.authors       = ["Ben Brostoff"]
   spec.email         = ["ben.brostoff@gmail.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}
