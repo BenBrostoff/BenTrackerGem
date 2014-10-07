@@ -2,10 +2,30 @@ require 'Bentrackergem'
 
 describe 'BenTrackerGem' do
 
-  let (:response) { RestClient.get('http://brostofftrack.herokuapp.com/history.json') }
-  
-  it "successfully gets the data " do 
-    expect(response.code).to eq(200)
+  let (:response_get) { RestClient.get('http://brostofftrack.herokuapp.com/history.json') }
+  let (:response_post) { BenTrackerGem.post_message("Test Suite") }
+
+  context "get-based methods" do 
+
+    it "successfully gets the data " do 
+      expect(response_get.code).to eq(200)
+    end
+
+  end
+
+  context "#post_message" do
+      
+      it "raises an error if the user does not enter a message as String" do
+        expect{
+          BenTrackerGem.post_message(12345)
+          }.to raise_error(ArgumentError, "must enter message as String")
+      end
+
+      it "successfully posts the data " do 
+        expect(response_post.code).to eq(200)
+        expect(response_post).to eq("{}")
+    end
+
   end
 
   context "#valid_format" do 
