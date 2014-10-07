@@ -11,7 +11,13 @@ describe 'BenTrackerGem' do
   it "should raise an argument error for invalid date format" do 
     expect{ 
       BenTrackerGem.day_stats("COO") 
-      }.to raise_error(ArgumentError)
+      }.to raise_error(ArgumentError, "invalid date")
+  end
+
+  it "should raise an argument error if date is outside range" do 
+    expect {
+      BenTrackerGem.day_stats("2014-01-01")
+    }.to raise_error(ArgumentError, "Date outside range (data begins 2014-09-30)")
   end
 
   it "should return a summary of the day in hash format" do

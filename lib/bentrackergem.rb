@@ -14,6 +14,9 @@ module BenTrackerGem
 
   def self.day_stats(date)
     date = valid_format(date)
+    if date > valid_format(Time.now.to_s) || date < "2014-09-30"
+      raise ArgumentError, "Date outside range (data begins 2014-09-30)"
+    end
     HISTORY.each do |summary|
       if summary["day_of"] == date
         return {:message => summary["message"],
