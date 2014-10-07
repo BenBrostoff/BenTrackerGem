@@ -3,6 +3,7 @@
 .bundle
 .config
 .yardoc
+.gem
 Gemfile.lock
 InstalledFiles
 _yardoc
@@ -20,3 +21,4 @@ tmp
 *.o
 *.a
 mkmf.log
+

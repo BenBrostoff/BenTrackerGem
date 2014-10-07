@@ -18,7 +18,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Post today's summary:
+
+`BenTrackerGem.post_message("What a great day!")`
+
+Get today's stats:
+
+`BenTrackerGem.day_stats("2014-10-06")`
+
+Get multiple days of stats:
+
+`BenTrackerGem.date_range("2014-09-30", "2014-10-05")`
+
+Get visual output of specific category:
+
+`BenTrackerGem.date_range_visual("code", "2014-10-03", "2014-10-06")`
 
 ## Contributing
 
