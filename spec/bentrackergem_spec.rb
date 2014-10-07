@@ -14,17 +14,17 @@ describe 'BenTrackerGem' do
   end
 
   context "#post_message" do
-      
-      it "raises an error if the user does not enter a message as String" do
-        expect{
-          BenTrackerGem.post_message(12345)
-          }.to raise_error(ArgumentError, "must enter message as String")
-      end
-
-      it "successfully posts the data " do 
-        expect(response_post.code).to eq(200)
-        expect(response_post).to eq("{}")
+    
+    it "raises an error if the user does not enter a message as String" do
+      expect{
+        BenTrackerGem.post_message(12345)
+        }.to raise_error(ArgumentError, "must enter message as String")
     end
+
+    it "successfully posts the data " do 
+      expect(response_post.code).to eq(200)
+      expect(response_post).to eq("{}")
+  end
 
   end
 
@@ -50,7 +50,7 @@ describe 'BenTrackerGem' do
       expect(BenTrackerGem.day_stats("2014-10-06")).to eq({
          :day_of => "2014-10-06",
          :code => 6,
-         :fitness => 14705,
+         :fitness => 15142,
          :message => "Interview with Avant. Run. Working on app."
         })
     end

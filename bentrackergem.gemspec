@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = BenTrackerGem::VERSION
   spec.authors       = ["Ben Brostoff"]
   spec.email         = ["ben.brostoff@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{A simple Ruby gem that serves as my virtual code, fitness and diary tracker.}
+  spec.description   = %q{Leverages FitBit and GitHub to track fitness and code; messages can be input via the command line and are emailed to me via the Mandrill API.}
   spec.homepage      = "https://github.com/BenBrostoff/BenTrackerGem"
   spec.license       = "MIT"
 

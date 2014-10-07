@@ -1,6 +1,6 @@
-# Bentrackergem
+# BenTrackerGem
 
-TODO: Write a gem description
+A gem that records my daily FitBit steps, GitHub contributions and summaries I write to myself. The intent here is for the gem to function as a personal API diary; as of this writing, it has little utility beyond me (unless you wish to know what I did on a given day). 
 
 ## Installation
 
