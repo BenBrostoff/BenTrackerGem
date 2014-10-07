@@ -57,7 +57,7 @@ module BenTrackerGem
   def self.post_message(message)
     raise ArgumentError, "must enter message as String" if !message.is_a? String
 
-    RestClient.post URL_POST, { 'message' => '#{message}' }.to_json, 
+    RestClient.post URL_POST, { 'message' => message }.to_json, 
       :content_type => :json, 
       :accept => :json
   end
