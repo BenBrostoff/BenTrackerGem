@@ -28,6 +28,7 @@ describe 'BenTrackerGem' do
 
     it "should return a summary of the day in hash format" do
       expect(BenTrackerGem.day_stats("2014-10-06")).to eq({
+         :day_of => "2014-10-06",
          :code => 6,
          :fitness => 14705,
          :message => "Interview with Avant. Run. Working on app."
@@ -44,6 +45,22 @@ describe 'BenTrackerGem' do
          BenTrackerGem.day_stats("2014-10-04"),
          BenTrackerGem.day_stats("2014-10-05")]
         )
+    end
+
+  end
+
+  context "#date_range_visual" do 
+
+    it "should raise an error if user requests invalid category" do 
+      expect{ 
+        BenTrackerGem.date_range_visual("COO", "2014-10-03", "2014-10-05")  
+        }.to raise_error(ArgumentError, "must select valid category")
+    end
+
+    it "should execute without error when valid category and dates are input" do
+      expect( 
+        BenTrackerGem.date_range_visual("message", "2014-10-03", "2014-10-06")  
+        ).to eq("COMPLETE")
     end
 
   end

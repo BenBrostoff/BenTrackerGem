@@ -7,6 +7,7 @@ module BenTrackerGem
 
   URL = 'http://brostofftrack.herokuapp.com/history.json'
   HISTORY = JSON.parse(RestClient.get URL).to_h["days"]
+  VALID_CATS = ["message", "code", "fitness"]
   
   def self.valid_format(date)
     date = DateTime.parse(date, "%Y-%m-%d").to_s[0..9]
@@ -18,7 +19,8 @@ module BenTrackerGem
   end
 
   def self.filter_hash(hash)
-    {:message => hash["message"],
+    {:day_of => hash["day_of"],
+     :message => hash["message"],
      :code => hash["code"],
      :fitness => hash["fitness"]}
   end
@@ -38,5 +40,17 @@ module BenTrackerGem
                               summary["day_of"] <= end_date }.
                               map { |summary| day_stats(summary["day_of"]) }
   end   
+
+  def self.date_range_visual(req, begin_date, end_date, sort = 0)
+    raise ArgumentError, "must select valid category" if !VALID_CATS.include? req
+
+    filter = date_range(begin_date, end_date)
+    filter = filter.reverse if sort == 1
+    filter.each do |visi|
+      puts visi[:day_of] + ". " + visi[req.to_sym].to_s
+    end
+    "COMPLETE"
+  end
+
 
 end
