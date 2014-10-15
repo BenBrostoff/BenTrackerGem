@@ -59,11 +59,12 @@ describe 'BenTrackerGem' do
 
   context "#date_range" do 
 
-    it "should return an array of day summaries given valid begin and end dates" do
-      expect(BenTrackerGem.date_range("2014-10-03", "2014-10-05")).to eq(
-        [BenTrackerGem.day_stats("2014-10-03"),
-         BenTrackerGem.day_stats("2014-10-04"),
-         BenTrackerGem.day_stats("2014-10-05")]
+    it "should return an array of day summaries given valid begin and end dates in chronological order" do
+      expect(BenTrackerGem.date_range("2014-10-08", "2014-10-11")).to eq(
+        [BenTrackerGem.day_stats("2014-10-08"),
+         BenTrackerGem.day_stats("2014-10-09"),
+         BenTrackerGem.day_stats("2014-10-10"),
+         BenTrackerGem.day_stats("2014-10-11")]
         )
     end
 
@@ -79,7 +80,7 @@ describe 'BenTrackerGem' do
 
     it "should execute without error when valid category and dates are input" do
       expect( 
-        BenTrackerGem.date_range_visual("message", "2014-10-03", "2014-10-06")  
+        BenTrackerGem.date_range_visual("message", "2014-10-08", "2014-10-14")  
         ).to eq("COMPLETE")
     end
 

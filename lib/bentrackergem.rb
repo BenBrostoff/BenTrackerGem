@@ -1,4 +1,5 @@
 require "bentrackergem/version"
+require "chronic"
 require "rest_client"
 require "json"
 require "date"
@@ -7,9 +8,12 @@ module BenTrackerGem
 
   URL_GET = 'http://brostofftrack.herokuapp.com/history.json'
   URL_POST = 'http://brostofftrack.herokuapp.com/email'
-  HISTORY = JSON.parse(RestClient.get URL_GET).to_h["days"]
 
   VALID_CATS = ["message", "code", "fitness"]
+
+  def self.get_history
+    JSON.parse(RestClient.get URL_GET).to_h["days"]
+  end
   
   def self.valid_format(date)
     date = DateTime.parse(date, "%Y-%m-%d").to_s[0..9]
@@ -29,7 +33,7 @@ module BenTrackerGem
 
   def self.day_stats(date)
     date = valid_format(date)
-    HISTORY.each do |summary|
+    get_history.each do |summary|
       if summary["day_of"] == date
         return filter_hash(summary)
       end
@@ -38,9 +42,10 @@ module BenTrackerGem
 
   def self.date_range(begin_date, end_date)
     begin_date, end_date, hold = valid_format(begin_date), valid_format(end_date), []
-    filter = HISTORY.select { |summary| summary["day_of"] >= begin_date && 
+    filter = get_history.select { |summary| summary["day_of"] >= begin_date && 
                               summary["day_of"] <= end_date }.
-                              map { |summary| day_stats(summary["day_of"]) }
+                              map { |summary| day_stats(summary["day_of"]) }.
+                              sort_by { |summary| summary[:day_of] }
   end   
 
   def self.date_range_visual(req, begin_date, end_date, sort = 0)
