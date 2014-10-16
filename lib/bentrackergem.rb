@@ -59,6 +59,12 @@ module BenTrackerGem
     "COMPLETE"
   end
 
+  def self.diary(begin_date = "last week", end_date = "today")
+    date_range_visual("message", 
+                      Chronic.parse(begin_date).to_s[0..9],
+                      Chronic.parse(end_date).to_s[0..9])
+  end
+
   def self.post_message(message)
     raise ArgumentError, "must enter message as String" if !message.is_a? String
 
