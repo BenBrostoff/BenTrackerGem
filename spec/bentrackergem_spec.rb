@@ -59,11 +59,12 @@ describe 'BenTrackerGem' do
 
   context "#date_range" do 
 
-    it "should return an array of day summaries given valid begin and end dates" do
-      expect(BenTrackerGem.date_range("2014-10-03", "2014-10-05")).to eq(
-        [BenTrackerGem.day_stats("2014-10-03"),
-         BenTrackerGem.day_stats("2014-10-04"),
-         BenTrackerGem.day_stats("2014-10-05")]
+    it "should return an array of day summaries given valid begin and end dates in chronological order" do
+      expect(BenTrackerGem.date_range("2014-10-08", "2014-10-11")).to eq(
+        [BenTrackerGem.day_stats("2014-10-08"),
+         BenTrackerGem.day_stats("2014-10-09"),
+         BenTrackerGem.day_stats("2014-10-10"),
+         BenTrackerGem.day_stats("2014-10-11")]
         )
     end
 
@@ -73,13 +74,29 @@ describe 'BenTrackerGem' do
 
     it "should raise an error if user requests invalid category" do 
       expect{ 
-        BenTrackerGem.date_range_visual("COO", "2014-10-03", "2014-10-05")  
+          BenTrackerGem.date_range_visual("COO", "2014-10-03", "2014-10-05")  
         }.to raise_error(ArgumentError, "must select valid category")
     end
 
     it "should execute without error when valid category and dates are input" do
       expect( 
-        BenTrackerGem.date_range_visual("message", "2014-10-03", "2014-10-06")  
+          BenTrackerGem.date_range_visual("message", "2014-10-08", "2014-10-15")  
+        ).to eq("COMPLETE")
+    end
+
+  end
+
+  context "#diary" do 
+
+    it "should replicate #date_range_visual with last week's info by default" do
+      expect( 
+          BenTrackerGem.diary
+        ).to eq("COMPLETE")
+    end
+
+    it "should allow for optional arguments" do
+      expect( 
+          BenTrackerGem.diary("three days ago", "today")
         ).to eq("COMPLETE")
     end
 
