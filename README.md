@@ -22,6 +22,8 @@ Post today's summary:
 
 `BenTrackerGem.post_message("What a great day!")`
 
+Note that support for this feature is limited to users who have my username and password as env variables, or, me. 
+
 Get today's stats:
 
 `BenTrackerGem.day_stats("2014-10-06")`
@@ -33,6 +35,14 @@ Get multiple days of stats:
 Get visual output of specific category:
 
 `BenTrackerGem.date_range_visual("code", "2014-10-03", "2014-10-06")`
+
+See what's been going on over the last week:
+
+`BenTrackerGem.diary`
+
+See what I've been reading lately:
+
+`BenTrackerGem.book_diary`
 
 ## Contributing
 
