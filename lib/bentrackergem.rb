@@ -78,7 +78,8 @@ module BenTrackerGem
     filter = filter.reverse if sort == 1
     
     filter.each do |visi|
-      puts visi[key.to_sym] + ". " + visi[req.to_sym].to_s 
+      puts visi[key.to_sym] + ". " + visi[req.to_sym].to_s if book_flag == 0
+      puts visi[key.to_sym] + ". " + visi[:title].to_s + " by " +  visi[:author].to_s if book_flag == 1
     end
     "COMPLETE"
   end
