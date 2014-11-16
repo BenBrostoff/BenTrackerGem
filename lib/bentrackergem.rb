@@ -6,13 +6,13 @@ require "date"
 
 module BenTrackerGem
 
-  URL_GET = 'http://brostofftrack.herokuapp.com/history.json'
+  HISTORY = 'http://brostofftrack.herokuapp.com/history.json'
   URL_POST = 'http://brostofftrack.herokuapp.com/email'
 
   VALID_CATS = ["message", "code", "fitness"]
 
   def self.get_history
-    JSON.parse(RestClient.get URL_GET).to_h["days"]
+    JSON.parse(RestClient.get HISTORY).to_h["days"]
   end
   
   def self.valid_format(date)
@@ -68,9 +68,11 @@ module BenTrackerGem
   def self.post_message(message)
     raise ArgumentError, "must enter message as String" if !message.is_a? String
 
-    RestClient.post URL_POST, { 'message' => message }.to_json, 
-      :content_type => :json, 
-      :accept => :json
+    # Must have valid credentials as environment variables 
+    user = ENV['bg_user']
+    pass = ENV['bg_pass']
+    curl = "curl -d message='#{message}' -u #{user}:#{pass} #{URL_POST}"
+    system(curl)
   end
 
 end

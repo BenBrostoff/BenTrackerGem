@@ -22,8 +22,7 @@ describe 'BenTrackerGem' do
     end
 
     it "successfully posts the data " do 
-      expect(response_post.code).to eq(200)
-      expect(response_post).to eq("{}")
+      expect(response_post).to eq(true)
   end
 
   end
