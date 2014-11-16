@@ -82,6 +82,12 @@ describe 'BenTrackerGem' do
           BenTrackerGem.date_range_visual("message", "2014-10-08", "2014-10-15")  
         ).to eq("COMPLETE")
     end
+ 
+    it "should execute without error when valid category and dates are input on a book" do
+      expect( 
+          BenTrackerGem.date_range_visual("author", "2014-11-01", "2014-11-15", 1)  
+        ).to eq("COMPLETE")
+    end
 
   end
 
@@ -99,6 +105,20 @@ describe 'BenTrackerGem' do
         ).to eq("COMPLETE")
     end
 
+  end
+
+  context "#book_diary" do
+     it "should replicate #date_range_visual with last week's info by default" do
+      expect( 
+          BenTrackerGem.book_diary
+        ).to eq("COMPLETE")
+    end
+
+    it "should allow for optional arguments" do
+      expect( 
+          BenTrackerGem.book_diary("three days ago", "today")
+        ).to eq("COMPLETE")
+    end    
   end
 
 end
